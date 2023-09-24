@@ -68,17 +68,17 @@ while True:
             print(f'Your choice is: {Fore.GREEN + player_print}')
             print(Fore.LIGHTWHITE_EX + f'The computer has chosen {Fore.BLUE + computer_print}')
             if player_move == computer_move:
-                print(Fore.YELLOW + 'Draw!')
+                print(Fore.LIGHTYELLOW_EX + 'Draw!')
                 draw_score += 1
                 best_streak = 0
             elif (player_move == 's' and computer_move == 'p') or\
                     (player_move == 'r' and computer_move == 's') or\
                     (player_move == 'p' and computer_move == 'r'):
-                print(Fore.GREEN + 'You win!')
+                print(Fore.LIGHTGREEN_EX + 'You win!')
                 player_score += 1
                 best_streak += 1
             else:
-                print(Fore.RED + 'You lose!')
+                print(Fore.LIGHTRED_EX + 'You lose!')
                 computer_score += 1
                 best_streak = 0
             games_counter += 1
