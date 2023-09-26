@@ -66,10 +66,12 @@ games_counter = 0
 player_score = 0
 computer_score = 0
 draw_score = 0
+current_streak = 0
 best_streak = 0
 
 while True:     # Game logic in while loop
-    player_choice = input(Fore.LIGHTWHITE_EX + 'Press "Enter" to play or "q" to quit: ').lower()
+    player_choice = input(Fore.LIGHTWHITE_EX + 'Press "Enter" to play or "q" to quit.'
+                                               '\nType "stats" for current game statistics: ').lower()
     if player_choice == 'q':
         print('Thanks for playing!')
         break
@@ -105,25 +107,29 @@ while True:     # Game logic in while loop
             if player_move == computer_move:  # game result logic for all possible outcomes
                 print(Fore.LIGHTYELLOW_EX + 'Draw!')
                 draw_score += 1
-                best_streak = 0
+                current_streak = 0
             elif (player_move == 's' and computer_move == 'p') or \
                     (player_move == 'r' and computer_move == 's') or \
                     (player_move == 'p' and computer_move == 'r'):
                 print(Fore.LIGHTGREEN_EX + 'You win!')
                 player_score += 1
-                best_streak += 1
+                current_streak += 1
+                print(f'Winning streak: {current_streak}')
+                if current_streak > best_streak:
+                    best_streak = current_streak
             else:
                 print(Fore.LIGHTRED_EX + 'You lose!')
                 computer_score += 1
-                best_streak = 0
+                current_streak = 0
+                print(f'Winning streak: {current_streak}')
             games_counter += 1
-            print(Fore.CYAN + f'Total games: {games_counter}')
-            print(Fore.CYAN + f'Score: Player: {player_score} : {computer_score} Computer')
-            print(f'Draws: {draw_score}')
-            print(f'Best streak: {best_streak}')
         else:
             print('Invalid input. Try again.')
             continue
+    elif player_choice == 'stats':
+        print(Fore.CYAN + f'Total games: {games_counter}')
+        print(Fore.CYAN + f'Score: Player: {player_score} : {computer_score} Computer')
+        print(f'Draws: {draw_score}')
     else:
         print(Fore.RED + 'Invalid input. Try again')
         continue
